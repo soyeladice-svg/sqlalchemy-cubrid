@@ -62,10 +62,10 @@ integration: ## Run integration tests against a Docker CUBRID and always attempt
 			cleanup_status=0; \
 		else \
 			cleanup_status=$$?; \
-			echo "Docker cleanup failed (status $$cleanup_status)" >&2; \
+			echo "Docker cleanup failed (status ${cleanup_status})" >&2; \
 		fi; \
-		if [ "$$original_status" -ne 0 ]; then exit "$$original_status"; fi; \
-		exit "$$cleanup_status"; \
+		if [ "${original_status}" -ne 0 ]; then exit "${original_status}"; fi; \
+		exit "${cleanup_status}"; \
 	}; \
 	trap cleanup 0; \
 	docker compose up -d; \
