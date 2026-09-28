@@ -7,6 +7,12 @@ on:
       - validate/pr508-rebase-20260928
     paths:
       - '.github/workflows/temp-validate-pr508.yml'
+      - 'Makefile'
+      - 'test/test_make_integration.py'
+      - 'CHANGELOG.md'
+      - 'docs/DEVELOPMENT.md'
+      - 'docs/ko/DEVELOPMENT.md'
+      - 'docs/llms-full.txt'
 
 permissions:
   contents: read
