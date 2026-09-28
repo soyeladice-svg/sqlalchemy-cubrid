@@ -56,16 +56,16 @@ test-all: ## Run tests across all Python versions via tox
 integration: ## Run integration tests against a Docker CUBRID and always attempt cleanup
 	@set -e; \
 	cleanup() { \
-		original_status=$?; \
+		original_status=$$?; \
 		trap - 0; \
 		if docker compose down -v; then \
 			cleanup_status=0; \
 		else \
-			cleanup_status=$?; \
-			echo "Docker cleanup failed (status $cleanup_status)" >&2; \
+			cleanup_status=$$?; \
+			echo "Docker cleanup failed (status $$cleanup_status)" >&2; \
 		fi; \
-		if [ "$original_status" -ne 0 ]; then exit "$original_status"; fi; \
-		exit "$cleanup_status"; \
+		if [ "$$original_status" -ne 0 ]; then exit "$$original_status"; fi; \
+		exit "$$cleanup_status"; \
 	}; \
 	trap cleanup 0; \
 	docker compose up -d; \
